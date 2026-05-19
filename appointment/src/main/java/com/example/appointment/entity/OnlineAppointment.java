@@ -15,7 +15,7 @@ public class OnlineAppointment extends Appointment {
 
     public OnlineAppointment() {}
 
-    
+
     public String displayInfo() {
         return super.displayInfo()
                 + " | Booked via: " + platform;
