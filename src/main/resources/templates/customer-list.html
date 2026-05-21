@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Customer List</title>
+    <title>Customer Dashboard</title>
 
     <link rel="stylesheet"
           href="/css/style.css">
@@ -28,67 +28,89 @@
 
     </div>
 
-    <table>
+    <div class="table-wrapper">
 
-        <tr>
+        <table>
 
-            <th>ID</th>
+            <thead>
 
-            <th>Name</th>
+            <tr>
 
-            <th>Email</th>
+                <th>ID</th>
 
-            <th>Phone</th>
+                <th>Name</th>
 
-            <th>Membership</th>
+                <th>Email</th>
 
-            <th>Actions</th>
+                <th>Phone</th>
 
-        </tr>
+                <th>Membership</th>
 
-        <tr th:each="customer : ${customers}">
+                <th>Actions</th>
 
-            <td th:text="${customer.id}"></td>
+            </tr>
 
-            <td th:text="${customer.name}"></td>
+            </thead>
 
-            <td th:text="${customer.email}"></td>
+            <tbody>
 
-            <td th:text="${customer.phone}"></td>
+            <tr th:each="customer : ${customers}">
 
-            <td th:text="${customer.membershipType}"></td>
+                <td th:text="${customer.id}"></td>
 
-            <td class="actions">
+                <td th:text="${customer.name}"></td>
 
-                <a th:href=
-                   "@{/editCustomer/{id}
-                   (id=${customer.id})}">
+                <td th:text="${customer.email}"></td>
 
-                    <button>
-                        Edit
-                    </button>
+                <td th:text="${customer.phone}"></td>
 
-                </a>
+                <td>
 
-                <a th:href=
-                   "@{/deleteCustomer/{id}
-                   (id=${customer.id})}"
+                    <span class="membership-badge"
+                          th:text="${customer.membershipType}">
+                    </span>
 
-                   onclick=
-                   "return confirm(
-                   'Delete this customer?')">
+                </td>
 
-                    <button>
-                        Delete
-                    </button>
+                <td>
 
-                </a>
+                    <div class="actions">
 
-            </td>
+                        <a th:href=
+                           "@{/editCustomer/{id}
+                           (id=${customer.id})}">
 
-        </tr>
+                            <button class="edit-btn">
+                                Edit
+                            </button>
 
-    </table>
+                        </a>
+
+                        <a th:href=
+                           "@{/deleteCustomer/{id}
+                           (id=${customer.id})}"
+
+                           onclick=
+                           "return confirm(
+                           'Delete this customer?')">
+
+                            <button class="delete-btn">
+                                Delete
+                            </button>
+
+                        </a>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>
 

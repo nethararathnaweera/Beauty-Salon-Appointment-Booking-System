@@ -53,7 +53,7 @@ body{
 
     width:100%;
 
-    max-width:650px;
+    max-width:1600px;
 
     padding:50px;
 
@@ -90,7 +90,7 @@ h1{
 
     text-align:center;
 
-    font-size:48px;
+    font-size:56px;
 
     margin-bottom:40px;
 
@@ -115,6 +115,16 @@ h1{
                 0 0 25px #a855f7,
                 0 0 50px #7c3aed;
     }
+}
+
+.top-button{
+
+    margin-bottom:30px;
+}
+
+.top-button button{
+
+    width:auto;
 }
 
 form{
@@ -300,11 +310,11 @@ input:focus{
 
 button{
 
-    padding:18px;
+    padding:16px 22px;
 
     border:none;
 
-    border-radius:18px;
+    border-radius:16px;
 
     background:
             linear-gradient(
@@ -315,7 +325,7 @@ button{
 
     color:white;
 
-    font-size:18px;
+    font-size:16px;
 
     font-weight:600;
 
@@ -361,6 +371,137 @@ button:hover{
 button:hover::before{
 
     left:130%;
+}
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+    margin-top:25px;
+}
+
+table{
+
+    width:100%;
+
+    table-layout:fixed;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border-radius:20px;
+}
+
+thead{
+
+    background:
+            rgba(99,102,241,0.18);
+}
+
+th{
+
+    padding:18px 12px;
+
+    text-align:center;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+}
+
+td{
+
+    padding:20px 12px;
+
+    text-align:center;
+
+    color:#f8fafc;
+
+    font-size:15px;
+
+    word-wrap:break-word;
+
+    background:
+            rgba(15,23,42,0.55);
+
+    border-bottom:
+            1px solid rgba(255,255,255,0.05);
+
+    transition:0.3s;
+}
+
+tr:hover td{
+
+    background:
+            rgba(30,41,59,0.8);
+}
+
+.actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-direction:row;
+}
+
+.actions button{
+
+    min-width:80px;
+
+    padding:10px 14px;
+
+    font-size:14px;
+}
+
+.edit-btn{
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #0ea5e9,
+                    #2563eb
+            );
+}
+
+.delete-btn{
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #ef4444,
+                    #dc2626
+            );
+}
+
+.membership-badge{
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:white;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #facc15
+            );
+
+    box-shadow:
+            0 0 20px rgba(250,204,21,0.45);
 }
 
 .back-link{
