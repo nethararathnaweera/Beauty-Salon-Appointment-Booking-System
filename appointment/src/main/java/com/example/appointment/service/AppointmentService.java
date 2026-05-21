@@ -24,6 +24,7 @@ public class AppointmentService {
                     appointment.getAppointmentID() + "," +
                             appointment.getCustomerID()    + "," +
                             appointment.getCustomerName()  + "," +
+                            appointment.getServiceType()   + "," +
                             appointment.getDate()          + "," +
                             appointment.getTime()          + "," +
                             appointment.getStatus()        + "\n"
@@ -52,9 +53,10 @@ public class AppointmentService {
                 a.setAppointmentID(Integer.parseInt(parts[0]));
                 a.setCustomerID(Integer.parseInt(parts[1]));
                 a.setCustomerName(parts[2]);
-                a.setDate(parts[3]);
-                a.setTime(parts[4]);
-                a.setStatus(AppointmentStatus.valueOf(parts[5]));
+                a.setServiceType(parts[3]);
+                a.setDate(parts[4]);
+                a.setTime(parts[5]);
+                a.setStatus(AppointmentStatus.valueOf(parts[6]));
                 list.add(a);
             }
             reader.close();
@@ -87,6 +89,7 @@ public class AppointmentService {
                             id                          + "," +
                                     updated.getCustomerID()     + "," +
                                     updated.getCustomerName()   + "," +
+                                    updated.getServiceType()    + "," +
                                     updated.getDate()           + "," +
                                     updated.getTime()           + "," +
                                     updated.getStatus()         + "\n"
@@ -96,6 +99,7 @@ public class AppointmentService {
                             a.getAppointmentID() + "," +
                                     a.getCustomerID()    + "," +
                                     a.getCustomerName()  + "," +
+                                    a.getServiceType()   + "," +
                                     a.getDate()          + "," +
                                     a.getTime()          + "," +
                                     a.getStatus()        + "\n"
@@ -120,6 +124,7 @@ public class AppointmentService {
                             a.getAppointmentID() + "," +
                                     a.getCustomerID()    + "," +
                                     a.getCustomerName()  + "," +
+                                    a.getServiceType()   + "," +
                                     a.getDate()          + "," +
                                     a.getTime()          + "," +
                                     a.getStatus()        + "\n"

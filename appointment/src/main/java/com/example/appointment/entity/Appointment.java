@@ -5,15 +5,17 @@ public class Appointment {
     private int appointmentID;
     private int customerID;
     private String customerName;
+    private String serviceType;
     private String date;
     private String time;
     private AppointmentStatus status;
 
-    public Appointment(int appointmentID, int customerID, String customerName,
+    public Appointment(int appointmentID, int customerID, String customerName, String serviceType,
                        String date, String time) {
         this.appointmentID = appointmentID;
         this.customerID    = customerID;
         this.customerName  = customerName;
+        this.serviceType   = serviceType;
         this.date          = date;
         this.time          = time;
         this.status        = AppointmentStatus.PENDING;
@@ -23,7 +25,7 @@ public class Appointment {
 
     public String displayInfo() {
         return "Appointment [" + appointmentID + "]"
-                + " | Customer: " + customerName
+                + " | Customer: " + customerName  + " | Service: " + serviceType
                 + " | Date: " + date + " at " + time
                 + " | Status: " + status;
     }
@@ -34,6 +36,8 @@ public class Appointment {
         return customerID; }
     public String getCustomerName()   {
         return customerName; }
+    public String getServiceType()   {
+        return serviceType; }
     public String getDate()    {
         return date; }
     public String getTime()   {
@@ -47,6 +51,8 @@ public class Appointment {
         this.customerID = c; }
     public void setCustomerName(String n)   {
         this.customerName = n; }
+    public void setServiceType(String s)  {
+        this.serviceType = s; }
     public void setDate(String date)   {
         this.date = date; }
     public void setTime(String time)  {

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Book New Appointment</h1>
+    <form action="/saveAppointment" method="post">
+
+        <label>Customer ID</label>
+        <input type="number" name="customerID"
+               placeholder="Enter Customer ID" required>
+
+        <label>Customer Name</label>
+        <input type="text" name="customerName"
+               placeholder="Enter Customer Name" required>
+
+        <label>Service Type</label>
+        <select name="serviceType">
+            <option value="Haircut">Haircut</option>
+            <option value="Hair Coloring">Hair Coloring</option>
+            <option value="Facial">Facial</option>
+            <option value="Manicure">Manicure</option>
+            <option value="Pedicure">Pedicure</option>
+        </select>
+
+        <label>Date</label>
+        <input type="date" name="date" required>
+
+        <label>Time</label>
+        <input type="time" name="time" required>
+
+        <button type="submit">Book Appointment</button>
+
+    </form>
+    <br>
+    <a href="/appointments">View All Appointments</a>
+</div>
+</body>
+</html>

@@ -25,6 +25,7 @@ public class AppointmentController {
     public String saveAppointment(
             @RequestParam int customerID,
             @RequestParam String customerName,
+            @RequestParam String serviceType,
             @RequestParam String date,
             @RequestParam String time) {
 
@@ -61,6 +62,7 @@ public class AppointmentController {
             @RequestParam int id,
             @RequestParam int customerID,
             @RequestParam String customerName,
+            @RequestParam String serviceType,
             @RequestParam String date,
             @RequestParam String time,
             @RequestParam String status) {
@@ -68,6 +70,7 @@ public class AppointmentController {
         Appointment appointment = new Appointment();
         appointment.setCustomerID(customerID);
         appointment.setCustomerName(customerName);
+        appointment.setServiceType(serviceType);
         appointment.setDate(date);
         appointment.setTime(time);
         appointment.setStatus(AppointmentStatus.valueOf(status));
