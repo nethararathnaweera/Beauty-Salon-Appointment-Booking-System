@@ -108,7 +108,7 @@ public class ServiceFileRepository {
 
 
     // Delete service using ID
-    public void deleteById(Service id) {
+    public void deleteById(String id) {
         List<Service> services = findAll();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME))){
