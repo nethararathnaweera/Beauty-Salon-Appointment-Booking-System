@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Customer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #1e293b;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            width: 420px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #fff;
+            text-shadow: 0 0 10px #7c3aed;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input, select {
+            background: #0f172a;
+            color: #f8fafc;
+            border: 1px solid #334155;
+        }
+
+        input:focus, select:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 8px #7c3aed;
+        }
+
+        button {
+            background: #7c3aed;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #9333ea;
+            box-shadow: 0 0 12px #facc15;
+        }
+
+        /* Premium option glow */
+        select option[value="Premium"] {
+            color: #facc15;
+            font-weight: bold;
+        }
+
+        .back-link {
+            color: #7dd3fc;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register New Customer</h1>
+        <form action="/saveCustomer" method="POST">
+            <input type="text" name="name" placeholder="Enter Full Name" required>
+            <input type="email" name="email" placeholder="Enter Email Address" required>
+            <input type="text" name="phone" placeholder="Enter Phone Number" required>
+            <select name="membership" required>
+                <option value="Regular">Regular Membership</option>
+                <option value="Premium">Premium Membership</option>
+            </select>
+            <button type="submit">Register Customer</button>
+        </form>
+        <a class="back-link" href="/allCustomers">View All Customers</a>
+    </div>
+</body>
+</html>
