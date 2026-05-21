@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Edit Customer</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Edit Customer</h1>
+
+    <form action="/updateCustomer"
+          method="post">
+
+        <input type="hidden"
+               name="id"
+               th:value="${customer.id}">
+
+        <input type="text"
+               name="name"
+               th:value="${customer.name}"
+               required>
+
+        <input type="email"
+               name="email"
+               th:value="${customer.email}"
+               required>
+
+        <input type="text"
+               name="phone"
+               th:value="${customer.phone}"
+               required>
+
+        <select name="membershipType"
+                id="membershipSelect">
+
+            <option value="Regular"
+                    th:selected=
+                    "${customer.membershipType
+                    == 'Regular'}">
+
+                ✨ Regular Membership
+
+            </option>
+
+            <option value="Premium"
+                    th:selected=
+                    "${customer.membershipType
+                    == 'Premium'}">
+
+                👑 Premium Membership
+
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Update Customer
+        </button>
+
+    </form>
+
+    <a class="back-link"
+       href="/customers">
+
+        ← Back to Customer List
+
+    </a>
+
+</div>
+
+<script>
+
+    const membershipSelect =
+        document.getElementById(
+            "membershipSelect"
+        );
+
+    function updateMembershipStyle() {
+
+        if (
+            membershipSelect.value ===
+            "Premium"
+        ) {
+
+            membershipSelect.style.background =
+                "linear-gradient(135deg,#f59e0b,#facc15)";
+
+            membershipSelect.style.color =
+                "#1e1b4b";
+
+            membershipSelect.style.boxShadow =
+                "0 0 20px #facc15, 0 0 40px #f59e0b";
+
+        } else {
+
+            membershipSelect.style.background =
+                "linear-gradient(135deg,#334155,#1e293b)";
+
+            membershipSelect.style.color =
+                "white";
+
+            membershipSelect.style.boxShadow =
+                "none";
+        }
+    }
+
+    updateMembershipStyle();
+
+    membershipSelect.addEventListener(
+        "change",
+        updateMembershipStyle
+    );
+
+</script>
+
+</body>
+</html>
