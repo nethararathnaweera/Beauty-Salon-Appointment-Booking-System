@@ -32,6 +32,7 @@ public class AppointmentController {
         Appointment appointment = new Appointment();
         appointment.setCustomerID(customerID);
         appointment.setCustomerName(customerName);
+        appointment.setServiceType(serviceType);
         appointment.setDate(date);
         appointment.setTime(time);
         appointment.setStatus(AppointmentStatus.PENDING);
