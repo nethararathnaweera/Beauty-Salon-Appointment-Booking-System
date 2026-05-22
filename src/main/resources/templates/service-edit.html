@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Service</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        .btn-back {
+            display: inline-block;
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 15px;
+            margin-top: 15px;
+        }
+        .btn-back:hover {
+            background-color: #5a6268;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Edit Salon Service</h1>
+
+    <form th:action="@{'/services/update/' + ${service.id}}" method="post">
+
+
+        <label>ID</label>
+        <input type="text" name="id" th:value="${service.id}" required>
+
+        <label>Service Type</label>
+        <select name="type" required>
+            <option value="HAIR" th:selected="${service.type == 'HAIR'}">Hair Service</option>
+            <option value="SKIN" th:selected="${service.type == 'SKIN'}">Skin Service</option>
+        </select>
+
+        <label>Service Name</label>
+        <input type="text" name="name" th:value="${service.name}" required>
+
+        <label>Category</label>
+        <input type="text" name="category" th:value="${service.category}" required>
+
+        <label>Price</label>
+        <input type="number" step="0.01" name="price" th:value="${service.price}" required>
+
+        <label>Duration in Minutes</label>
+        <input type="number" name="duration" th:value="${service.duration}" required>
+
+        <label>Description</label>
+        <textarea name="description" th:text="${service.description}" required></textarea>
+
+        <label>Extra Detail</label>
+        <input type="text" name="extraValue" placeholder="Hair type or Skin type" required>
+
+        <button type="submit">Update Service</button>
+    </form>
+
+    <br><br>
+    <a href="/services" class="btn-back">← Back to Service List</a>
+</div>
+
+</body>
+</html>
