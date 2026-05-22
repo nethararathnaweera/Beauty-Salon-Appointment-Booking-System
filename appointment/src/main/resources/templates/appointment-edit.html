@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Appointment</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Edit Appointment</h1>
+        <p>Update your appointment details</p>
+    </div>
+
+    <div th:if="${error}" class="error-box">
+        <p th:text="${error}"></p>
+    </div>
+
+    <form th:action="@{/updateAppointment}" method="post">
+
+        <input type="hidden" name="id"
+               th:value="${appointment.appointmentID}">
+
+        <input type="hidden" name="customerID"
+               th:value="${appointment.customerID}">
+
+        <input type="hidden" name="customerName"
+               th:value="${appointment.customerName}">
+
+        <input type="hidden" name="status"
+               th:value="${appointment.status.name()}">
+
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text"
+                   th:value="${appointment.customerName}"
+                   readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Service Type</label>
+            <select name="serviceType" id="serviceSelect"
+                    onchange="updatePrice()">
+                <option value="Haircut"
+                        data-price="1500"
+                        th:selected="${appointment.serviceType == 'Haircut'}">
+                    Haircut — Rs. 1,500
+                </option>
+
+                <option value="Hair Coloring"
+                        data-price="2500"
+                        th:selected="${appointment.serviceType == 'Hair Coloring'}">
+                    Hair Coloring — Rs. 2,500
+                </option>
+
+                <option value="Facial"
+                        data-price="1800"
+                        th:selected="${appointment.serviceType == 'Facial'}">
+                    Facial — Rs. 1,800
+                </option>
+
+                <option value="Manicure"
+                        data-price="1200"
+                        th:selected="${appointment.serviceType == 'Manicure'}">
+                    Manicure — Rs. 1,200
+                </option>
+
+                <option value="Pedicure"
+                        data-price="1000"
+                        th:selected="${appointment.serviceType == 'Pedicure'}">
+                    Pedicure — Rs. 1,000
+                </option>
+            </select>
+        </div>
+
+        <div class="price-box">
+            <span>Updated Total Amount</span>
+            <strong id="priceDisplay">Rs. 0</strong>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date"
+                       name="date"
+                       id="dateInput"
+                       th:value="${appointment.date}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time"
+                       name="time"
+                       min="08:00"
+                       max="16:00"
+                       th:value="${appointment.time}"
+                       required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-primary">
+            Update Appointment
+        </button>
+
+    </form>
+
+    <a href="/appointments" class="back-link">
+        Back to My Appointments
+    </a>
+
+</div>
+
+<script>
+    document.getElementById('dateInput').min =
+        new Date().toISOString().split('T')[0];
+
+    function updatePrice() {
+        var sel = document.getElementById('serviceSelect');
+        var price = sel.options[sel.selectedIndex].getAttribute('data-price');
+        document.getElementById('priceDisplay').textContent =
+            'Rs. ' + parseInt(price).toLocaleString();
+    }
+
+    updatePrice();
+</script>
+</body>
+</html>

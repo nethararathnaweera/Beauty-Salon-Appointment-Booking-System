@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Appointments</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1 th:if="${isFiltered}">My Appointments</h1>
+        <h1 th:if="${!isFiltered}">Find My Appointments</h1>
+        <p th:if="${isFiltered}">
+            Showing appointments for Customer ID:
+            <strong th:text="${customerID}"
+                    style="color:#a78bfa;"></strong>
+        </p>
+        <p th:if="${!isFiltered}">
+            Enter your Customer ID to view your bookings
+        </p>
+    </div>
+
+    <div th:if="${success}" class="success-box">
+        <p>Appointment booked successfully!</p>
+    </div>
+
+    <div th:if="${updated}" class="success-box">
+        <p>Appointment updated successfully!</p>
+    </div>
+
+    <!-- Search box -->
+    <div class="search-box">
+        <p th:if="${!isFiltered}">Enter your Customer ID:</p>
+        <p th:if="${isFiltered}">Search a different Customer ID:</p>
+        <form action="/appointments" method="get">
+            <div style="display:flex; gap:10px; align-items:center;">
+                <input type="number"
+                       name="customerID"
+                       placeholder="Enter Customer ID"
+                       th:value="${customerID}"
+                       style="margin:0; max-width:220px;"
+                       required>
+                <button type="submit" class="btn-search">
+                    View Appointments
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <a href="/appointment" class="btn-new">+ Book New Appointment</a>
+
+    <!-- No appointments -->
+    <div th:if="${isFiltered and appointments.empty}"
+         class="no-appt-box">
+        <p>No appointments found for this Customer ID.</p>
+    </div>
+
+    <!-- Table -->
+    <table th:if="${isFiltered and !appointments.empty}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Service</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appt : ${appointments}">
+            <td th:text="${appt.appointmentID}"></td>
+            <td th:text="${appt.customerName}"></td>
+            <td th:text="${appt.serviceType}"></td>
+            <td th:text="'Rs. ' + ${appt.price}"></td>
+            <td th:text="${appt.date}"></td>
+            <td th:text="${appt.time}"></td>
+            <td>
+                    <span th:if="${appt.status.name() == 'PENDING'}"
+                          class="badge badge-pending">Pending</span>
+                <span th:if="${appt.status.name() == 'CONFIRMED'}"
+                      class="badge badge-confirmed">Confirmed</span>
+                <span th:if="${appt.status.name() == 'COMPLETED'}"
+                      class="badge badge-completed">Completed</span>
+                <span th:if="${appt.status.name() == 'CANCELLED'}"
+                      class="badge badge-cancelled">Cancelled</span>
+            </td>
+            <td>
+                <div style="display:flex; gap:8px; align-items:center;">
+
+                    <a th:href="@{/editAppointment/{id}(id=${appt.appointmentID})}"
+                       class="btn-search"
+                       style="text-decoration:none; padding:10px 18px; display:inline-block;">
+                        Edit
+                    </a>
+
+                    <a th:href="@{/deleteAppointment/{id}(id=${appt.appointmentID})}"
+                       class="btn-delete"
+                       style="text-decoration:none; padding:10px 18px; display:inline-block;"
+                       onclick="return confirm('Delete this appointment?')">
+                        Delete
+                    </a>
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

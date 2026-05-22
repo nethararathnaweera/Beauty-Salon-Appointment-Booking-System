@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booking Confirmed</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>Booking Confirmed</h1>
+        <p>Your appointment has been successfully booked</p>
+    </div>
+
+    <div class="success-icon-box">
+        <div class="success-circle">&#10003;</div>
+    </div>
+
+    <div class="detail-card">
+
+        <div class="detail-row">
+            <span class="detail-label">Appointment ID</span>
+            <span class="detail-value"
+                  th:text="${appointment.appointmentID}"></span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">Customer ID</span>
+            <span class="detail-value"
+                  th:text="${appointment.customerID}"></span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">Customer Name</span>
+            <span class="detail-value"
+                  th:text="${appointment.customerName}"></span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">Service</span>
+            <span class="detail-value"
+                  th:text="${appointment.serviceType}"></span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">Date</span>
+            <span class="detail-value"
+                  th:text="${appointment.date}"></span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">Time</span>
+            <span class="detail-value"
+                  th:text="${appointment.time}"></span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">Status</span>
+            <span class="badge badge-pending">Pending</span>
+        </div>
+
+        <div class="detail-row total-row">
+            <span class="detail-label">Total Amount</span>
+            <span class="detail-price"
+                  th:text="'Rs. ' + ${appointment.price}"></span>
+        </div>
+
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:12px;">
+        <a th:href="@{/appointments(customerID=${appointment.customerID})}">
+            <button class="btn-primary"
+                    style="width:auto; padding:12px 24px;">
+                View My Appointments
+            </button>
+        </a>
+        <a href="/appointment">
+            <button class="btn-primary"
+                    style="width:auto; padding:12px 24px;
+                           background:#0f0f1a;
+                           border:1px solid rgba(138,43,226,0.4);">
+                Book Another
+            </button>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>
