@@ -1,5 +1,6 @@
 package com.example.appointment.controller;
 
+import jakarta.servlet.http.HttpSession;
 import com.example.appointment.entity.Appointment;
 import com.example.appointment.entity.AppointmentStatus;
 import com.example.appointment.service.AppointmentService;
@@ -16,9 +17,18 @@ public class AppointmentController {
 
     // Show booking form
     @GetMapping("/appointment")
-    public String appointmentPage(Model model) {
-        model.addAttribute("newCustomerID",
-                appointmentService.generateCustomerID());
+    public String appointmentPage(HttpSession session, Model model) {
+
+        Integer customerID = (Integer) session.getAttribute("customerID");
+        String customerName = (String) session.getAttribute("customerName");
+
+        if (customerID == null || customerName == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("customerID", customerID);
+        model.addAttribute("customerName", customerName);
+
         return "appointment";
     }
 
@@ -78,18 +88,23 @@ public class AppointmentController {
     // CUSTOMER VIEW — filtered by customer ID
     @GetMapping("/appointments")
     public String listAppointments(
-            @RequestParam(required = false) Integer customerID,
+            HttpSession session,
+            @RequestParam(required = false) String success,
             Model model) {
 
-        if (customerID != null) {
-            model.addAttribute("appointments",
-                    appointmentService.getAppointmentsByCustomerID(customerID));
-            model.addAttribute("customerID", customerID);
-            model.addAttribute("isFiltered", true);
-        } else {
-            model.addAttribute("appointments", new java.util.ArrayList<>());
-            model.addAttribute("isFiltered", false);
+        Integer customerID = (Integer) session.getAttribute("customerID");
+        String customerName = (String) session.getAttribute("customerName");
+
+        if (customerID == null || customerName == null) {
+            return "redirect:/login";
         }
+
+        model.addAttribute("appointments",
+                appointmentService.getAppointmentsByCustomerID(customerID));
+        model.addAttribute("customerID", customerID);
+        model.addAttribute("customerName", customerName);
+        model.addAttribute("success", success);
+
         return "appointment-list";
     }
 
