@@ -5,64 +5,87 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
 <div class="container">
-    <h1>Edit Appointment</h1>
+    <div class="header">
+        <h1>Edit Appointment</h1>
+        <p>Admin — update appointment details</p>
+    </div>
 
     <form action="/updateAppointment" method="post">
 
-        <!-- Hidden fields -->
         <input type="hidden" name="id"
                th:value="${appointment.appointmentID}">
         <input type="hidden" name="customerID"
                th:value="${appointment.customerID}">
 
-        <label>Customer Name</label>
-        <input type="text" name="customerName"
-               th:value="${appointment.customerName}" required>
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" name="customerName"
+                   th:value="${appointment.customerName}" required>
+        </div>
 
-        <label>Service Type</label>
-        <select name="serviceType">
-            <option value="Haircut"
-                    th:selected="${appointment.serviceType == 'Haircut'}">Haircut</option>
-            <option value="Hair Coloring"
-                    th:selected="${appointment.serviceType == 'Hair Coloring'}">Hair Coloring</option>
-            <option value="Facial"
-                    th:selected="${appointment.serviceType == 'Facial'}">Facial</option>
-            <option value="Manicure"
-                    th:selected="${appointment.serviceType == 'Manicure'}">Manicure</option>
-            <option value="Pedicure"
-                    th:selected="${appointment.serviceType == 'Pedicure'}">Pedicure</option>
-        </select>
+        <div class="form-group">
+            <label>Service Type</label>
+            <select name="serviceType">
+                <option value="Haircut"
+                        th:selected="${appointment.serviceType == 'Haircut'}">
+                    Haircut — Rs. 1,500</option>
+                <option value="Hair Coloring"
+                        th:selected="${appointment.serviceType == 'Hair Coloring'}">
+                    Hair Coloring — Rs. 2,500</option>
+                <option value="Facial"
+                        th:selected="${appointment.serviceType == 'Facial'}">
+                    Facial — Rs. 1,800</option>
+                <option value="Manicure"
+                        th:selected="${appointment.serviceType == 'Manicure'}">
+                    Manicure — Rs. 1,200</option>
+                <option value="Pedicure"
+                        th:selected="${appointment.serviceType == 'Pedicure'}">
+                    Pedicure — Rs. 1,000</option>
+            </select>
+        </div>
 
-        <label>Date</label>
-        <input type="date" name="date"
-               th:value="${appointment.date}" required>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" name="date"
+                       th:value="${appointment.date}" required>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time" name="time"
+                       th:value="${appointment.time}" required>
+            </div>
+        </div>
 
-        <label>Time</label>
-        <input type="time" name="time"
-               th:value="${appointment.time}" required>
+        <div class="form-group">
+            <label>Status</label>
+            <select name="status">
+                <option value="PENDING"
+                        th:selected="${appointment.status.name() == 'PENDING'}">
+                    Pending</option>
+                <option value="CONFIRMED"
+                        th:selected="${appointment.status.name() == 'CONFIRMED'}">
+                    Confirmed</option>
+                <option value="COMPLETED"
+                        th:selected="${appointment.status.name() == 'COMPLETED'}">
+                    Completed</option>
+                <option value="CANCELLED"
+                        th:selected="${appointment.status.name() == 'CANCELLED'}">
+                    Cancelled</option>
+            </select>
+        </div>
 
-        <label>Status</label>
-        <select name="status">
-            <option value="PENDING"
-                    th:selected="${appointment.status.name() == 'PENDING'}">Pending</option>
-            <option value="CONFIRMED"
-                    th:selected="${appointment.status.name() == 'CONFIRMED'}">Confirmed</option>
-            <option value="COMPLETED"
-                    th:selected="${appointment.status.name() == 'COMPLETED'}">Completed</option>
-            <option value="CANCELLED"
-                    th:selected="${appointment.status.name() == 'CANCELLED'}">Cancelled</option>
-        </select>
-
-        <button type="submit">Update Appointment</button>
+        <button type="submit" class="btn-primary">
+            Update Appointment
+        </button>
 
     </form>
 
-    <br>
-    <a href="/appointments">Cancel</a>
+    <a href="/admin/appointments" class="back-link">
+        Back to All Appointments
+    </a>
 
 </div>
-
 </body>
 </html>

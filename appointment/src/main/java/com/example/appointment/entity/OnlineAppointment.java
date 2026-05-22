@@ -7,9 +7,9 @@ public class OnlineAppointment extends Appointment {
 
 
     public OnlineAppointment(int appointmentID, int customerID,
-                             String customerName, String serviceType, String date,
+                             String customerName, String serviceType, double price, String date,
                              String time, String platform) {
-        super(appointmentID, customerID, customerName, serviceType, date, time);
+        super(appointmentID, customerID, customerName, serviceType, price, date, time);
         this.platform = platform;
     }
 
