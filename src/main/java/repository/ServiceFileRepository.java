@@ -90,14 +90,17 @@ public class ServiceFileRepository {
         List<Service> services = findAll();
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME))){
+            boolean found = false;
 
             for (Service service :services){
                 if (service.getId().equals(updateService.getId())){
                     writer.write(convertServiceToLine(service));
                     writer.newLine();
+                    found=true;
                 }
                 else {
                     writer.write(convertServiceToLine(service));
+                    writer.newLine();
                 }
             }
 
@@ -112,12 +115,12 @@ public class ServiceFileRepository {
         List<Service> services = findAll();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME))){
-                for (Service service : services) {
-                    if (!service.getId().equals(id)) {
-                        writer.write(convertServiceToLine(service));
-                        writer.newLine();
-                    }
+            for (Service service : services) {
+                if (!service.getId().equals(id)) {
+                    writer.write(convertServiceToLine(service));
+                    writer.newLine();
                 }
+            }
 
         } catch (IOException e) {
             System.out.println("Error deleting file"+e.getMessage());
@@ -191,6 +194,3 @@ public class ServiceFileRepository {
     }
 
 }
-
-
-

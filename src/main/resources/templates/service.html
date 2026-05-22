@@ -1,51 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit Service</title>
+    <title>Add Service</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="page-wrap">
     <div class="container form-container">
-        <h1 class="page-title glow-title">Update Service</h1>
-        <p class="page-subtitle">Modifying: <span th:text="${service.name}" style="color:white">Service</span></p>
+        <h1 class="page-title glow-title">Register New Service</h1>
+        <p class="page-subtitle">Add a new salon treatment to your catalogue.</p>
 
-        <form th:action="@{'/services/update/' + ${service.id}}" method="post" class="modern-form">
-            <!-- ID is hidden so the backend still knows which one to update, but user doesn't see it -->
-            <input type="hidden" name="id" th:value="${service.id}">
-
+        <form action="/services" method="post" class="modern-form">
             <div class="form-group">
                 <label>Service Name</label>
-                <input type="text" name="name" th:value="${service.name}" required>
+                <input type="text" name="name" placeholder="Enter Full Service Name" required>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label>Category</label>
-                    <input type="text" name="category" th:value="${service.category}" required>
+                    <input type="text" name="category" placeholder="Hair, Skin, etc." required>
                 </div>
                 <div class="form-group">
                     <label>Extra Detail</label>
-                    <input type="text" name="extraValue" th:value="${service.serviceInfo}" required>
+                    <input type="text" name="extraValue" placeholder="Hair type or Skin type" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label>Price</label>
-                    <input type="number" step="0.01" name="price" th:value="${service.price}" required>
+                    <label>Price ($)</label>
+                    <input type="number" name="price" step="0.01" placeholder="0.00" required>
                 </div>
                 <div class="form-group">
-                    <label>Duration</label>
-                    <input type="number" name="duration" th:value="${service.duration}" required>
+                    <label>Duration (Mins)</label>
+                    <input type="number" name="duration" placeholder="e.g. 45" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Service Type</label>
+                <label>Membership / Service Type</label>
                 <div class="type-grid">
                     <label class="type-option">
-                        <input type="radio" name="type" value="HAIR" th:checked="${service.type == 'HAIR'}">
+                        <input type="radio" name="type" value="HAIR" checked required>
                         <span class="type-card">
                             <strong>✨ Hair</strong>
                             <small>Standard salon services</small>
@@ -53,7 +50,7 @@
                     </label>
 
                     <label class="type-option">
-                        <input type="radio" name="type" value="SKIN" th:checked="${service.type == 'SKIN'}">
+                        <input type="radio" name="type" value="SKIN" required>
                         <span class="type-card">
                             <strong>👑 Skin</strong>
                             <small>Premium skincare access</small>
@@ -64,12 +61,12 @@
 
             <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" th:text="${service.description}" required></textarea>
+                <textarea name="description" placeholder="Describe the service benefits..." required></textarea>
             </div>
 
             <div class="button-stack">
-                <button type="submit" class="btn btn-primary btn-block">Update Service</button>
-                <a href="/services" class="center-link">Cancel and Go Back</a>
+                <button type="submit" class="btn btn-primary btn-block">Register Service</button>
+                <a href="/services" class="center-link">View All Services</a>
             </div>
         </form>
     </div>

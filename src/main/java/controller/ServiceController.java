@@ -32,7 +32,7 @@ public class ServiceController {
         List<Service> services;
 
         if(category != null && !category.isEmpty()){
-            services=repository.findByCategory(category);
+            services=repository.finfByCategory(category);
         }else {
             services=repository.findAll();
         }

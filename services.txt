@@ -1,1 +1,2 @@
 SKIN|2|Gold Facial|Skin|3500.0|60|Facial treatment for glowing skin|8SKIN
+HAIR|6336cc15-b096-4921-8c8b-892cba55e664|HAIR CUT|HAIR|1500.0|60|-|-
