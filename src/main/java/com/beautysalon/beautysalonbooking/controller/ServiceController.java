@@ -1,10 +1,10 @@
-package controller;
+package com.beautysalon.beautysalonbooking.controller;
 
-import model.HairService;
-import model.Service;
-import model.SkinService;
+import com.beautysalon.beautysalonbooking.model.Service;
+import com.beautysalon.beautysalonbooking.model.HairService;
+import com.beautysalon.beautysalonbooking.model.SkinService;
 import org.springframework.beans.factory.annotation.Autowired;
-import repository.ServiceFileRepository;
+import com.beautysalon.beautysalonbooking.repository.ServiceFileRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +21,7 @@ public class ServiceController {
         this.repository=repository;
     }
 
-    @GetMapping("/")
-    public String home(){
-        return "redirect:/services";
-    }
+
 
     @GetMapping("/services")
     public String viewServices(@RequestParam(required = false)String category,Model model){

@@ -1,4 +1,4 @@
-package model;
+package com.beautysalon.beautysalonbooking.model;
 
 public class HairService extends Service{
     private String hairType;
