@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f1f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 85%;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #0f766e;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button, .btn {
+    background-color: #0f766e;
+    color: white;
+    border: none;
+    padding: 9px 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+button:hover, .btn:hover {
+    background-color: #115e59;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+th {
+    background-color: #0f766e;
+    color: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.search-box {
+    margin-top: 20px;
+}
