@@ -35,36 +35,33 @@ public class AppointmentController {
     // Save new appointment
     @PostMapping("/saveAppointment")
     public String saveAppointment(
-            @RequestParam int customerID,
-            @RequestParam String customerName,
+            HttpSession session,
             @RequestParam String serviceType,
             @RequestParam String date,
             @RequestParam String time,
             Model model) {
 
+        Integer customerID = (Integer) session.getAttribute("customerID");
+        String customerName = (String) session.getAttribute("customerName");
+
+        if (customerID == null || customerName == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("customerID", customerID);
+        model.addAttribute("customerName", customerName);
+
         // validate date
         if (!appointmentService.isValidDate(date)) {
             model.addAttribute("error",
                     "Invalid date! Please select today or a future date.");
-            model.addAttribute("newCustomerID", customerID);
             return "appointment";
         }
 
         // validate time
         if (!appointmentService.isValidTime(time)) {
             model.addAttribute("error",
-                    "Invalid time! Appointments are only available "
-                            + "between 8:00 AM and 4:00 PM.");
-            model.addAttribute("newCustomerID", customerID);
-            return "appointment";
-        }
-
-        // one appointment per customer
-        if (appointmentService.hasActiveAppointment(customerID)) {
-            model.addAttribute("error",
-                    "You already have an active appointment! "
-                            + "Please complete or cancel it before booking a new one.");
-            model.addAttribute("newCustomerID", customerID);
+                    "Invalid time! Appointments are only available between 8:00 AM and 4:00 PM.");
             return "appointment";
         }
 
@@ -78,11 +75,7 @@ public class AppointmentController {
 
         appointmentService.saveAppointment(appointment);
 
-        // send to success page
-        int newId = appointmentService.getAllAppointments().size();
-        Appointment saved = appointmentService.getAppointmentById(newId);
-        model.addAttribute("appointment", saved);
-        return "appointment-success";
+        return "redirect:/appointments?success=true";
     }
 
     // CUSTOMER VIEW — filtered by customer ID
@@ -90,19 +83,26 @@ public class AppointmentController {
     public String listAppointments(
             HttpSession session,
             @RequestParam(required = false) String success,
+            @RequestParam(required = false) String updated,
             Model model) {
 
         Integer customerID = (Integer) session.getAttribute("customerID");
         String customerName = (String) session.getAttribute("customerName");
-
+        model.addAttribute("updated", updated);
         if (customerID == null || customerName == null) {
             return "redirect:/login";
         }
 
         model.addAttribute("appointments",
                 appointmentService.getAppointmentsByCustomerID(customerID));
+
         model.addAttribute("customerID", customerID);
         model.addAttribute("customerName", customerName);
+
+        // These two lines are needed because appointment-list.html uses them
+        model.addAttribute("isFiltered", true);
+        model.addAttribute("isAdmin", false);
+
         model.addAttribute("success", success);
 
         return "appointment-list";
@@ -151,33 +151,79 @@ public class AppointmentController {
 
     // EDIT FORM — admin only
     @GetMapping("/editAppointment/{id}")
-    public String editForm(@PathVariable int id, Model model) {
-        model.addAttribute("appointment",
-                appointmentService.getAppointmentById(id));
+    public String editForm(
+            @PathVariable int id,
+            HttpSession session,
+            Model model) {
+
+        Integer customerID = (Integer) session.getAttribute("customerID");
+
+        if (customerID == null) {
+            return "redirect:/login";
+        }
+
+        Appointment appointment = appointmentService.getAppointmentById(id);
+
+        if (appointment == null || appointment.getCustomerID() != customerID) {
+            return "redirect:/appointments";
+        }
+
+        model.addAttribute("appointment", appointment);
         return "appointment-edit";
     }
 
     // UPDATE — admin only
     @PostMapping("/updateAppointment")
     public String updateAppointment(
+            HttpSession session,
             @RequestParam int id,
-            @RequestParam int customerID,
-            @RequestParam String customerName,
             @RequestParam String serviceType,
             @RequestParam String date,
             @RequestParam String time,
-            @RequestParam String status) {
+            Model model) {
 
-        Appointment a = new Appointment();
-        a.setCustomerID(customerID);
-        a.setCustomerName(customerName);
-        a.setServiceType(serviceType);
-        a.setDate(date);
-        a.setTime(time);
-        a.setStatus(AppointmentStatus.valueOf(status));
+        Integer customerID = (Integer) session.getAttribute("customerID");
+        String customerName = (String) session.getAttribute("customerName");
 
-        appointmentService.updateAppointment(id, a);
-        return "redirect:/admin/appointments";
+        if (customerID == null || customerName == null) {
+            return "redirect:/login";
+        }
+
+        Appointment existing = appointmentService.getAppointmentById(id);
+
+        if (existing == null) {
+            return "redirect:/appointments";
+        }
+
+        if (existing.getCustomerID() != customerID) {
+            return "redirect:/appointments";
+        }
+
+        if (!appointmentService.isValidDate(date)) {
+            model.addAttribute("error",
+                    "Invalid date! Please select today or a future date.");
+            model.addAttribute("appointment", existing);
+            return "appointment-edit";
+        }
+
+        if (!appointmentService.isValidTime(time)) {
+            model.addAttribute("error",
+                    "Invalid time! Appointments are only available between 8:00 AM and 4:00 PM.");
+            model.addAttribute("appointment", existing);
+            return "appointment-edit";
+        }
+
+        Appointment updated = new Appointment();
+        updated.setCustomerID(customerID);
+        updated.setCustomerName(customerName);
+        updated.setServiceType(serviceType);
+        updated.setDate(date);
+        updated.setTime(time);
+        updated.setStatus(existing.getStatus());
+
+        appointmentService.updateAppointment(id, updated);
+
+        return "redirect:/appointments?updated=true";
     }
 
     // DELETE

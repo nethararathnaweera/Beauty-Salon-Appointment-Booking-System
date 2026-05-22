@@ -61,16 +61,24 @@ public class AppointmentService {
         return false;
     }
 
-    // AUTO GENERATE CUSTOMER ID
-    public int generateCustomerID() {
-        return getAllAppointments().size() + 1;
+    // AUTO GENERATE APPOINTMENT ID
+    public int generateAppointmentID() {
+        int maxId = 0;
+
+        for (Appointment appointment : getAllAppointments()) {
+            if (appointment.getAppointmentID() > maxId) {
+                maxId = appointment.getAppointmentID();
+            }
+        }
+
+        return maxId + 1;
     }
 
     // CREATE
     public void saveAppointment(Appointment appointment) {
         try {
-            int count = getAllAppointments().size() + 1;
-            appointment.setAppointmentID(count);
+            int newId = generateAppointmentID();
+            appointment.setAppointmentID(newId);
             appointment.setPrice(getServicePrice(
                     appointment.getServiceType()));
 
@@ -174,36 +182,41 @@ public class AppointmentService {
         try {
             List<Appointment> list = getAllAppointments();
             FileWriter writer = new FileWriter(FILE_NAME, false);
+
             for (Appointment a : list) {
+
                 if (a.getAppointmentID() == id) {
-                    double price = getServicePrice(
-                            updated.getServiceType());
+                    double price = getServicePrice(updated.getServiceType());
+
                     writer.write(
-                            id                          + "," +
-                                    updated.getCustomerID()     + "," +
-                                    updated.getCustomerName()   + "," +
-                                    updated.getServiceType()    + "," +
-                                    price                       + "," +
-                                    updated.getDate()           + "," +
-                                    updated.getTime()           + "," +
-                                    updated.getStatus()         + "\n"
+                            id + "," +
+                                    updated.getCustomerID() + "," +
+                                    updated.getCustomerName() + "," +
+                                    updated.getServiceType() + "," +
+                                    price + "," +
+                                    updated.getDate() + "," +
+                                    updated.getTime() + "," +
+                                    updated.getStatus() + "\n"
                     );
-                }else {
+
+                } else {
                     writer.write(
                             a.getAppointmentID() + "," +
-                                    a.getCustomerID()    + "," +
-                                    a.getCustomerName()  + "," +
-                                    a.getServiceType()   + "," +
-                                    a.getPrice()         + "," +
-                                    a.getDate()          + "," +
-                                    a.getTime()          + "," +
-                                    a.getStatus()        + "\n"
+                                    a.getCustomerID() + "," +
+                                    a.getCustomerName() + "," +
+                                    a.getServiceType() + "," +
+                                    a.getPrice() + "," +
+                                    a.getDate() + "," +
+                                    a.getTime() + "," +
+                                    a.getStatus() + "\n"
                     );
                 }
             }
+
             writer.close();
+
         } catch (Exception e) {
-            throw new RuntimeException("Error updating: " + e.getMessage());
+            throw new RuntimeException("Error updating appointment: " + e.getMessage());
         }
     }
 

@@ -18,17 +18,24 @@
     <form action="/saveAppointment" method="post">
 
         <input type="hidden" name="customerID"
-               th:value="${newCustomerID}">
+               th:value="${customerID}">
 
         <div class="info-box">
-            <span>Your Customer ID — save this for future visits</span>
-            <strong th:text="${newCustomerID}"></strong>
+            <span>Logged in as</span>
+            <strong>
+                <span th:text="${customerName}"></span>
+                <span> | Customer ID: </span>
+                <span th:text="${customerID}"></span>
+            </strong>
         </div>
 
         <div class="form-group">
             <label>Customer Name</label>
-            <input type="text" name="customerName"
-                   placeholder="Enter Full Name" required>
+            <input type="text"
+                   name="customerName"
+                   th:value="${customerName}"
+                   readonly
+                   required>
         </div>
 
         <div class="form-group">

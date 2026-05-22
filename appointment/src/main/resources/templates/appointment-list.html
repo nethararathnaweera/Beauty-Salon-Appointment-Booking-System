@@ -20,6 +20,14 @@
         </p>
     </div>
 
+    <div th:if="${success}" class="success-box">
+        <p>Appointment booked successfully!</p>
+    </div>
+
+    <div th:if="${updated}" class="success-box">
+        <p>Appointment updated successfully!</p>
+    </div>
+
     <!-- Search box -->
     <div class="search-box">
         <p th:if="${!isFiltered}">Enter your Customer ID:</p>
@@ -80,11 +88,22 @@
                       class="badge badge-cancelled">Cancelled</span>
             </td>
             <td>
-                <!-- Customer can only DELETE -->
-                <a th:href="@{/deleteAppointment/{id}(id=${appt.appointmentID}, customerID=${customerID})}"
-                   onclick="return confirm('Delete this appointment?')">
-                    <button class="btn-delete">Delete</button>
-                </a>
+                <div style="display:flex; gap:8px; align-items:center;">
+
+                    <a th:href="@{/editAppointment/{id}(id=${appt.appointmentID})}"
+                       class="btn-search"
+                       style="text-decoration:none; padding:10px 18px; display:inline-block;">
+                        Edit
+                    </a>
+
+                    <a th:href="@{/deleteAppointment/{id}(id=${appt.appointmentID})}"
+                       class="btn-delete"
+                       style="text-decoration:none; padding:10px 18px; display:inline-block;"
+                       onclick="return confirm('Delete this appointment?')">
+                        Delete
+                    </a>
+
+                </div>
             </td>
         </tr>
         </tbody>
