@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.beautysalon.beautysalonbooking",
-        "controller",
-        "model",
-        "repository"
+        "com/beautysalon/beautysalonbooking",
+        "com/beautysalon/beautysalonbooking",
+        "com/beautysalon/beautysalonbooking"
 })
 public class BeautySalonBookingApplication {
 

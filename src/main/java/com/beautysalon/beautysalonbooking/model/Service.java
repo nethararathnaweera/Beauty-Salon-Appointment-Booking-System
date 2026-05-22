@@ -1,4 +1,4 @@
-package model;
+package com.beautysalon.beautysalonbooking.model;
 
 public abstract class Service {
     private String id;

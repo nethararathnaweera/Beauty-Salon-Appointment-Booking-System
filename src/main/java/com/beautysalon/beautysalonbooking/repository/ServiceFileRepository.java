@@ -1,12 +1,11 @@
-package repository;
+package com.beautysalon.beautysalonbooking.repository;
 
-import model.HairService;
-import model.Service;
-import model.SkinService;
+import com.beautysalon.beautysalonbooking.model.HairService;
+import com.beautysalon.beautysalonbooking.model.Service;
+import com.beautysalon.beautysalonbooking.model.SkinService;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.net.FileNameMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
