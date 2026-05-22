@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Service</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="page-wrap">
+    <div class="container form-container">
+        <h1 class="page-title glow-title">Update Service</h1>
+        <p class="page-subtitle">Modifying: <span th:text="${service.name}" style="color:white">Service</span></p>
+
+        <form th:action="@{'/services/update/' + ${service.id}}" method="post" class="modern-form">
+            <!-- ID is hidden so the backend still knows which one to update, but user doesn't see it -->
+            <input type="hidden" name="id" th:value="${service.id}">
+
+            <div class="form-group">
+                <label>Service Name</label>
+                <input type="text" name="name" th:value="${service.name}" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" name="category" th:value="${service.category}" required>
+                </div>
+                <div class="form-group">
+                    <label>Extra Detail</label>
+                    <input type="text" name="extraValue" th:value="${service.serviceInfo}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" step="100" name="price" th:value="${service.price}" required>
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="number" name="duration" th:value="${service.duration}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Service Type</label>
+                <div class="type-grid">
+                    <label class="type-option">
+                        <input type="radio" name="type" value="HAIR" th:checked="${service.type == 'HAIR'}">
+                        <span class="type-card">
+                            <strong>✨ Hair</strong>
+                            <small>Standard salon services</small>
+                        </span>
+                    </label>
+
+                    <label class="type-option">
+                        <input type="radio" name="type" value="SKIN" th:checked="${service.type == 'SKIN'}">
+                        <span class="type-card">
+                            <strong>👑 Skin</strong>
+                            <small>Premium skincare access</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" th:text="${service.description}" required></textarea>
+            </div>
+
+            <div class="button-stack">
+                <button type="submit" class="btn btn-primary btn-block">Update Service</button>
+                <a href="/services" class="center-link">Cancel and Go Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

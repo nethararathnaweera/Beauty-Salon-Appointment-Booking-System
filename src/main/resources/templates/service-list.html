@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Service List</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="page-wrap">
+    <div class="container">
+        <div class="toolbar">
+            <div>
+                <h1 class="page-title left-title glow-title">Service Catalogue</h1>
+                <p class="page-subtitle left-subtitle">Manage your salon's professional offerings.</p>
+            </div>
+            <a href="/services/new" class="btn btn-primary">+ Add New Service</a>
+        </div>
+
+        <form action="/services" method="get" class="search-box">
+            <input type="text" name="category" placeholder="Search by category..." th:value="${category}">
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="/services" class="btn btn-secondary">Clear</a>
+        </form>
+
+        <div class="table-card">
+            <table>
+                <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Duration</th>
+                    <th>Description</th>
+                    <th>Extra Info</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="service : ${services}">
+                    <td>
+                        <span class="badge" th:classappend="${service.type == 'HAIR'} ? ' hair' : ' skin'" th:text="${service.type}"></span>
+                    </td>
+                    <td th:text="${service.name}" style="font-weight: bold; color: white;"></td>
+                    <td th:text="${service.category}"></td>
+                    <td th:text="'Rs.' + ${service.price}"></td>
+                    <td th:text="${service.duration} + 'm'"></td>
+                    <td class="description-cell" th:text="${service.description}"></td>
+                    <td th:text="${service.serviceInfo}"></td>
+                    <td>
+                        <div class="action-bar">
+                            <a th:href="@{'/services/edit/' + ${service.id}}" class="btn btn-edit btn-sm">✏️ Edit</a>
+                            <form th:action="@{'/services/delete/' + ${service.id}}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this service?')">🗑️</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

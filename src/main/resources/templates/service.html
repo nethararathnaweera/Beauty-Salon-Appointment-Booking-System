@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Service</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="page-wrap">
+    <div class="container form-container">
+        <h1 class="page-title glow-title">Register New Service</h1>
+        <p class="page-subtitle">Add a new salon treatment to your catalogue.</p>
+
+        <form action="/services" method="post" class="modern-form">
+            <div class="form-group">
+                <label>Service Name</label>
+                <input type="text" name="name" placeholder="Enter Full Service Name" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" name="category" placeholder="Hair, Skin, etc." required>
+                </div>
+                <div class="form-group">
+                    <label>Extra Detail</label>
+                    <input type="text" name="extraValue" placeholder="Hair type or Skin type" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Price (Rs.)</label>
+                    <input type="number" name="price" step="100" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label>Duration (Mins)</label>
+                    <input type="number" name="duration" placeholder="e.g. 45" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Membership / Service Type</label>
+                <div class="type-grid">
+                    <label class="type-option">
+                        <input type="radio" name="type" value="HAIR" checked required>
+                        <span class="type-card">
+                            <strong>✨ Hair</strong>
+                            <small>Standard salon services</small>
+                        </span>
+                    </label>
+
+                    <label class="type-option">
+                        <input type="radio" name="type" value="SKIN" required>
+                        <span class="type-card">
+                            <strong>👑 Skin</strong>
+                            <small>Premium skincare access</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" placeholder="Describe the service benefits..." required></textarea>
+            </div>
+
+            <div class="button-stack">
+                <button type="submit" class="btn btn-primary btn-block">Register Service</button>
+                <a href="/services" class="center-link">View All Services</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
