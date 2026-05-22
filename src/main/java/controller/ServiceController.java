@@ -104,7 +104,6 @@ public class ServiceController {
         }
 
         repository.update(updateService);
-
         return "redirect:/services";
 
     }

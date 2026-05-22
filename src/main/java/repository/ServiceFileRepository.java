@@ -86,29 +86,32 @@ public class ServiceFileRepository {
     }
 
     //Update existing service
-    public void update(Service updateService){
+    //Update existing service - FIXED
+    public void update(Service updateService) {
         List<Service> services = findAll();
+        boolean found = false;
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME))){
-            boolean found = false;
-
-            for (Service service :services){
-                if (service.getId().equals(updateService.getId())){
-                    writer.write(convertServiceToLine(service));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME))) {
+            for (Service service : services) {
+                if (service.getId().equals(updateService.getId())) {
+                    writer.write(convertServiceToLine(updateService));  // ← Important fix
                     writer.newLine();
-                    found=true;
-                }
-                else {
+                    found = true;
+                } else {
                     writer.write(convertServiceToLine(service));
                     writer.newLine();
                 }
             }
 
-        }catch (IOException e){
-            System.out.println("Error detete from filrs:"+e.getMessage());
+            // If service was not found
+            if (!found) {
+                writer.write(convertServiceToLine(updateService));
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error updating file: " + e.getMessage());
         }
     }
-
 
     // Delete service using ID
     public void deleteById(String id) {
