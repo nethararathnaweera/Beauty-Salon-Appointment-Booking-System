@@ -1,10 +1,10 @@
-package com.beautysalon.beautysalonbooking.controller;
+package com.example.demo.controller;
 
-import com.beautysalon.beautysalonbooking.model.Service;
-import com.beautysalon.beautysalonbooking.model.HairService;
-import com.beautysalon.beautysalonbooking.model.SkinService;
+import com.example.demo.model.Service;
+import com.example.demo.model.HairService;
+import com.example.demo.model.SkinService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.beautysalon.beautysalonbooking.repository.ServiceFileRepository;
+import com.example.demo.repository.ServiceFileRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

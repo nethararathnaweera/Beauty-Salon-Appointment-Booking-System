@@ -1,0 +1,189 @@
+/* ============ HOME PAGE STYLES ============ */
+.home-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ===== HERO ===== */
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.08), transparent);
+    border-radius: 24px;
+    margin-bottom: 40px;
+}
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 10px;
+    text-shadow:
+        0 0 10px rgba(168, 85, 247, 0.8),
+        0 0 25px rgba(139, 92, 246, 0.6),
+        0 0 45px rgba(139, 92, 246, 0.4);
+}
+.hero-subtitle {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #c4b5fd;
+    margin: 0 0 20px;
+    letter-spacing: 1px;
+}
+.hero-tagline {
+    max-width: 640px;
+    margin: 0 auto 30px;
+    color: #94a3b8;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.btn-lg {
+    padding: 14px 30px !important;
+    font-size: 1rem !important;
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    background: rgba(30, 27, 50, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 60px;
+    backdrop-filter: blur(10px);
+}
+.stat-item {
+    text-align: center;
+}
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+.glow-text {
+    text-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+}
+.stat-label {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===== MODULES SECTION ===== */
+.modules-section {
+    margin-bottom: 60px;
+}
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin: 0 0 8px;
+}
+.section-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin: 0 0 40px;
+}
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* ===== MODULE CARD ===== */
+.module-card {
+    background: linear-gradient(145deg, rgba(30, 27, 50, 0.9), rgba(20, 17, 40, 0.9));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 18px;
+    padding: 30px 25px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.module-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #a855f7, #8b5cf6, #6366f1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.module-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow:
+        0 0 25px rgba(139, 92, 246, 0.35),
+        0 10px 40px rgba(0, 0, 0, 0.4);
+}
+.module-card:hover::before {
+    opacity: 1;
+}
+.module-icon {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
+}
+.module-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    margin: 0 0 10px;
+    font-weight: 700;
+}
+.module-desc {
+    color: #94a3b8;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    min-height: 60px;
+}
+.module-link {
+    color: #c4b5fd;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+.module-card:hover .module-link {
+    color: #a855f7;
+}
+
+/* ===== FOOTER ===== */
+.home-footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid rgba(139, 92, 246, 0.15);
+    color: #94a3b8;
+}
+.home-footer p {
+    margin: 4px 0;
+}
+.footer-sub {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .modules-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .hero-title { font-size: 2.8rem; }
+}
+@media (max-width: 560px) {
+    .modules-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.2rem; }
+    .hero-subtitle { font-size: 1.2rem; }
+}

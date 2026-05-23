@@ -1,8 +1,8 @@
-package com.beautysalon.beautysalonbooking.repository;
+package com.example.demo.repository;
 
-import com.beautysalon.beautysalonbooking.model.HairService;
-import com.beautysalon.beautysalonbooking.model.Service;
-import com.beautysalon.beautysalonbooking.model.SkinService;
+import com.example.demo.model.HairService;
+import com.example.demo.model.Service;
+import com.example.demo.model.SkinService;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
