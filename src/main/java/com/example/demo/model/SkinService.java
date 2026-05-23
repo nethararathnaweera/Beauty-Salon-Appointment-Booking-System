@@ -1,4 +1,4 @@
-package com.beautysalon.beautysalonbooking.model;
+package com.example.demo.model;
 
 public class SkinService extends Service {
     private String skinType;

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Beauty Salon - Home</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+<div class="page-wrap">
+    <div class="container home-container">
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <h1 class="hero-title glow-title">✨ Beauty Salon</h1>
+            <h2 class="hero-subtitle">Appointment Booking System</h2>
+            <p class="hero-tagline">
+                Your complete salon management solution — book appointments,
+                manage staff, browse services, and more.
+            </p>
+            <div class="hero-actions">
+                <a href="/appointments/new" class="btn btn-primary btn-lg">📅 Book Appointment</a>
+                <a href="/services" class="btn btn-secondary btn-lg">💅 Browse Services</a>
+            </div>
+        </section>
+
+        <!-- STATS BAR -->
+        <section class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number glow-text">6</div>
+                <div class="stat-label">Modules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number glow-text">24+</div>
+                <div class="stat-label">CRUD Operations</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number glow-text">18+</div>
+                <div class="stat-label">UI Pages</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number glow-text">100%</div>
+                <div class="stat-label">OOP Powered</div>
+            </div>
+        </section>
+
+        <!-- MODULES SECTION -->
+        <section class="modules-section">
+            <h2 class="section-title glow-title">Explore Modules</h2>
+            <p class="section-subtitle">Choose a module to manage</p>
+
+            <div class="modules-grid">
+
+                <!-- Customer Management -->
+                <a href="/customers" class="module-card">
+                    <div class="module-icon">👤</div>
+                    <h3 class="module-title">Customer Management</h3>
+                    <p class="module-desc">Register, search, and manage customer accounts with membership tiers.</p>
+                    <span class="module-link">Open Module →</span>
+                </a>
+
+                <!-- Appointment Booking -->
+                <a href="/appointments" class="module-card">
+                    <div class="module-icon">📅</div>
+                    <h3 class="module-title">Appointment Booking</h3>
+                    <p class="module-desc">Book, reschedule, and cancel appointments — online or walk-in.</p>
+                    <span class="module-link">Open Module →</span>
+                </a>
+
+                <!-- Service Management -->
+                <a href="/services" class="module-card">
+                    <div class="module-icon">💇</div>
+                    <h3 class="module-title">Service Catalogue</h3>
+                    <p class="module-desc">Browse hair, skin & nail services with pricing and duration.</p>
+                    <span class="module-link">Open Module →</span>
+                </a>
+
+                <!-- Staff Management -->
+                <a href="/staff" class="module-card">
+                    <div class="module-icon">👩‍🎨</div>
+                    <h3 class="module-title">Staff Management</h3>
+                    <p class="module-desc">Manage stylists, beauticians, and their specializations.</p>
+                    <span class="module-link">Open Module →</span>
+                </a>
+
+                <!-- Admin Dashboard -->
+                <a href="/admin/login" class="module-card">
+                    <div class="module-icon">🛡️</div>
+                    <h3 class="module-title">Admin Dashboard</h3>
+                    <p class="module-desc">Manage admins, view bookings, and control system permissions.</p>
+                    <span class="module-link">Open Module →</span>
+                </a>
+
+                <!-- Feedback & Reviews -->
+                <a href="/reviews" class="module-card">
+                    <div class="module-icon">⭐</div>
+                    <h3 class="module-title">Feedback & Reviews</h3>
+                    <p class="module-desc">Submit reviews, view ratings, and moderate feedback.</p>
+                    <span class="module-link">Open Module →</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="home-footer">
+            <p>SE1020 — Object Oriented Programming Project</p>
+            <p class="footer-sub">Spring Boot · Thymeleaf · File I/O · GitHub</p>
+        </footer>
+
+    </div>
+</div>
+</body>
+</html>
